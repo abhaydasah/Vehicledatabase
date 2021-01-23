@@ -54,6 +54,20 @@ public class MainActivity extends AppCompatActivity {
 
         AddData();
         viewAll();
+
+        Cursor cursor= myDb.getData();
+        if (cursor.getCount()==0){
+            Toast.makeText(getApplicationContext(),"No data",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            while (cursor.moveToNext()){
+
+                fanSpeed.setText(cursor.getString(1));
+                ac.setText(cursor.getString(2));
+                temper.setText(cursor.getString(3));
+
+            }
+        }
     }
 
     public  void AddData() {
@@ -95,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                showMessage("Data",buffer.toString());
+
 
             }
         });
